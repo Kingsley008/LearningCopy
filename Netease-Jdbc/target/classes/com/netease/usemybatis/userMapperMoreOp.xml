@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="com.netease.usemybatis.UserOp">
+ 
+    <insert id="addUser" parameterType="com.netease.usemybatis.User"
+      useGeneratedKeys="true" keyProperty="uid">
+      <!-- useGeneratedKeys="true" keyProperty="uid" 获得自增属性id的值 -->
+       insert into user (gid,username,password)
+       values(#{gid},#{username},#{password})
+    </insert>
+    <!-- 在select 标签中编写查询的SQL语句，设置select标签的id属性为getUser即接口中的方法
+      resultType 准备映射的那个javabean具体的位置
+     -->
+     <select id="getUser" parameterType="int"
+       resultType ="com.netease.usemybatis.User">
+       <!-- 根据uid 查询到一个User对象 -->
+       select uid ,gid,username,password from user where uid=#{uid}
+    </select>
+    <update id="updateUser" parameterType="com.netease.usemybatis.User">
+    update user set gid =#{gid},username=#{username},password=#{password}
+    where uid =#{uid}
+    </update>
+    <delete id ="deleteUser" parameterType="com.netease.usemybatis.User">
+       delete from user 
+       where uid =#{uid}
+    </delete>
+ 
+</mapper>

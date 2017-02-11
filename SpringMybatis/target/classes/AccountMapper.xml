@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="AccountMapper">
+    <resultMap id="AccountMap" 
+        type="com.netease.spring.mybatis.Account">	   
+	         <id  column ="userId" property="id" javaType="long"/>
+	         <result column ="balance" property="balance" javaType="double"/>
+    </resultMap>
+    
+    <select id="getAccount" resultMap="AccountMap">
+      select * from account2
+    </select>
+    
+    <update id="update" parameterType="com.netease.spring.mybatis.Account">
+      update account2 set balance =#{balance} where userId=#{id}
+   </update>
+    
+    <select id="getId" resultMap ="AccountMap">
+      select * from account2 where userId=#{id}
+    </select>
+    
+    
+</mapper>

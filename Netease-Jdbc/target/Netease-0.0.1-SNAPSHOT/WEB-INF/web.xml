@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Netease</display-name>
+  <filter>
+    <filter-name>testfilter</filter-name>
+    <filter-class>com.netease.Testfilter</filter-class>
+    <init-param>
+      <param-name>filterParam</param-name>
+      <param-value>111</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>testfilter</filter-name>
+    <url-pattern>/test</url-pattern>
+  </filter-mapping>
+  <listener>
+    <listener-class>com.netease.Testlistener</listener-class>
+  </listener>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>test</servlet-name>
+    <servlet-class>com.netease.Test</servlet-class>
+    <init-param>
+      <param-name>data1</param-name>
+      <param-value>value1</param-value>
+    </init-param>
+    <init-param>
+      <param-name>data2</param-name>
+      <param-value>value2</param-value>
+    </init-param>
+  </servlet>
+  <context-param>
+    <param-name>user1</param-name>
+    <param-value>123</param-value>
+  </context-param>
+  <context-param>
+    <param-name>user2</param-name>
+    <param-value>345</param-value>
+  </context-param>
+  <context-param>
+    <param-name>user3</param-name>
+    <param-value>12345</param-value>
+  </context-param>
+  <servlet-mapping>
+    <servlet-name>test</servlet-name>
+    <url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>Logincl</servlet-name>
+  <servlet-class>com.netease.Logincl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>Logincl</servlet-name>
+  <url-pattern>/Logincl</url-pattern>
+  </servlet-mapping>
+  
+  <error-page>
+    <error-code>404</error-code>
+    <location>/404.html</location>
+  </error-page>
+</web-app>

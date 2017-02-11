@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="com.netease.trymybatis.Op">
+    <select id="getUser" parameterType="int"
+       resultMap ="UserMap">
+       select  User.id as userId ,userName,tel ,Product.id as productId, productName,catalog From
+User left join Transaction on User.id = Transaction.userId left join Product on
+Transaction.productId = Product.id Where User.id =#{id}
+     
+    </select>
+    <resultMap id="UserMap" 
+        type="com.netease.trymybatis.User">
+	      <constructor>
+	      <!-- 对应javaType 对应 User的构造器 -->
+	      <!-- column对应数据库的列名（别名） -->
+	         <idArg column ="userId" javaType="int"/>
+	         <arg column ="userName" javaType="String"/>
+	         <arg column ="tel" javaType ="String"/>
+	      </constructor>  
+	      <!-- 对容器进行赋值  property的名字要和javabean中的名字相同-->
+	      <collection property ="Product"
+	         ofType="com.netease.trymybatis.Product" >
+	         <id property="id" column="productId" />
+	         <result property="productName" column ="productName"/>
+	         <result property="catalog"     column="catalog" />
+	       </collection>
+    </resultMap>
+    
+</mapper>

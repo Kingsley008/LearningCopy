@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- 注解annotation 注入的实现 -->
+	<context:component-scan base-package="com.netease.spring.bean"/>
+	<!-- class 从包到具体名字 -->
+	<bean id="Userbean" class="com.netease.spring.bean.Userbean" init-method="init" destroy-method="cleanup" scope="prototype" ></bean>
+	<bean id="Student" class="com.netease.spring.bean.Student">
+	<!-- 基本参数类型的构造函数注入 
+	<constructor-arg index="0" value="15"></constructor-arg>
+	<constructor-arg index="1" value="male"></constructor-arg>
+	-->
+	<!-- Map类型的注入格式-->
+		<constructor-arg>
+	   <map>
+          <entry key="age" value="${age}"></entry>
+          <entry key="gender" value="${gender}"></entry>	   
+	   </map>
+	</constructor-arg>
+	
+	 <!-- List类型的注入格式
+		<constructor-arg>
+	   <list>
+          <value="20"></value>
+          <value="male"></value>	   
+	   </list>
+	</constructor-arg>
+	 -->
+	 
+	 <!-- setter类型的注入  
+	 <property name="grade" value="${grade}"></property>
+	 <property name="classNumber" value="${classNumber}"></property>
+	-->
+	</bean>
+	
+	<!-- 
+	<bean id="School" class="com.netease.spring.bean.School">
+	 bean类型的注入,组合的方式 
+	<constructor-arg><ref bean="Student"/></constructor-arg>
+	</bean>
+	 -->
+	 
+	<!-- 实现bean的自动装载  注解的方式-->
+	<bean id="School" class="com.netease.spring.bean.School" >
+	
+	</bean>
+	<bean id="studentProperties"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:student.properties" />
+	</bean>
+</beans>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+ <configuration>
+  <environments default="development">
+    <environment id="development">
+       <!-- transactionManager 事务管理器 ，交给了JDBC控制
+             ps. managered  交给外部容器 比如spring 
+        -->
+      <transactionManager type="jdbc"/>
+       <!-- 配置数据源 -->
+      <dataSource type ="POOLED">
+           <property name="driver" value="com.mysql.jdbc.Driver"/>
+           <property name="url" value="jdbc:mysql://127.0.0.1:3306/db_order?characterEncoding=utf8"/>
+           <property name="username" value="root"/>
+           <property name="password" value="wbd_12345"/>
+           <!-- 最大活跃连接数量 根据业务量 不宜设置过大 -->
+           <property name="poolMaxmumActiveConnections" value="20" />  
+           <!-- 设置最大空闲的连接数量  与最大活跃相同即可 -->
+	       <property name="poolMaximumIdleConnections" value="20" /> 
+	       <!-- 当ActiveConnections达到最大值，检查第一个连接是否超时，超过强制使其失效，返回该连接-->  
+	       <property name="poolMaximunCheckoutTime" value="120000" />  
+	       <!-- 获取服务器端数据连接的超时时间，如果超过该时间，则打印日志，同时重新获取默认20秒-->
+	       <property name="poolTimeToWait" value="20000" />
+	        <!-- 启用连接侦测，检查连接池中的连接是否为有效连接 -->
+	       <property name="poolPingEnabled" value="true" />
+	        <!-- 侦测sql,建议select 1 开销小 -->
+	       <property name="poolPingQuery" value="select 1" />
+	        <!-- 侦测时间6h，小于服务器超时时间，mysql默认8小时-->
+	       <property name="poolPingConnectionsNotUsedFor" value="2160000" />
+           
+       </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+  <!-- 创建对应的mapper 映射  -->
+     <mapper resource ="com/netease/trymybatis/UserMapper.xml"/>
+  </mappers>
+ </configuration>

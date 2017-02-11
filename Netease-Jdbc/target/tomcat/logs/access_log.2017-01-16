@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [16/Jan/2017:12:50:27 +0800] "GET /Netease/Login.html HTTP/1.1" 304 - http-bio-8080-exec-1 42
+0:0:0:0:0:0:0:1 - - [16/Jan/2017:12:50:28 +0800] "GET /Netease/test?user=&password= HTTP/1.1" 200 - http-bio-8080-exec-2 13
+0:0:0:0:0:0:0:1 - - [16/Jan/2017:13:28:14 +0800] "GET /Netease/test?user=&password= HTTP/1.1" 500 3068 http-bio-8080-exec-1 53
+0:0:0:0:0:0:0:1 - - [16/Jan/2017:13:32:55 +0800] "GET /Netease/test?user=&password= HTTP/1.1" 500 3068 http-bio-8080-exec-1 55
