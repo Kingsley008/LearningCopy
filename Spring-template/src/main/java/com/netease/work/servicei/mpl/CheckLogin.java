@@ -23,7 +23,7 @@ public class CheckLogin {
 	public boolean checkuser(String username,String password){
 		boolean b = false;
 		
-		String sql ="select * from user where userName=? and userPassword=?";
+		String sql ="select * from User where userName=? and userPassword=?";
 		this.jdbcTemplate.queryForList(sql, username,password);	
 		// 执行查询,将动态参数放到object 数组里
 		List <Userlg> userlgs = this.jdbcTemplate.query(sql, new Object[]{username,password}
